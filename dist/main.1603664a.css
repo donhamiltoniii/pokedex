@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font: 20px/1 sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 30rem;
+  width: 90%;
+}
+
+
+/*# sourceMappingURL=/main.1603664a.css.map */
