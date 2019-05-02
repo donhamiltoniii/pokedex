@@ -117,27 +117,131 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"src/js/app.js":[function(require,module,exports) {
-console.log("Connected");
-var userInput = document.querySelector(".input");
-var button = document.querySelector(".getPokemon");
-button.addEventListener("click", function () {
-  var pokemonId = userInput.value;
-  fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonId).then(function (res) {
-    return res.json();
-  }).then(function (pokemon) {
-    console.log(pokemon);
-    document.querySelector(".pokemon-types").textContent = "";
-    document.querySelector(".pokemon-header__pokemon-name").textContent = pokemon.name;
-    document.querySelector(".pokemon-id").textContent = pokemon.id;
-    document.querySelector(".pokemon-height").textContent = pokemon.height;
-    pokemon.types.forEach(function (type) {
-      document.querySelector(".pokemon-types").textContent += type.type.name + "/";
-    }); // console.log(pokemon.types[0].type.name)
-    // console.log(pokemon.types[1].type.name)
-  });
+})({"src/js/utils/format.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
-},{}],"node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+exports.capitalize = capitalize;
+
+function capitalize(str) {
+  return str.slice(0, 1).toUpperCase() + str.slice(1);
+}
+},{}],"src/js/utils/render-elements.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _format = require("./format");
+
+var userInputButton = document.querySelector(".user-input__button");
+var userInputField = document.querySelector(".user-input__field");
+
+function _populatePokemonAvatar(imageSrc) {
+  document.querySelector(".main-info__avatar").src = imageSrc;
+}
+
+function _populatePokemonHeight(height) {
+  document.querySelector(".pokemon-height").textContent = height;
+}
+
+function _populatePokemonId(id) {
+  document.querySelector(".pokemon-id").textContent = id;
+}
+
+function _populatePokeMonMoves(moves) {
+  document.querySelector(".pokemon-moves").innerHTML = moves.slice(0, 10).map(function (move) {
+    return move.move.name;
+  }).reduce(function (previous, current) {
+    return previous += "<li class=\"pokemon-moves__item\">".concat((0, _format.capitalize)(current), "</li>");
+  }, "");
+}
+
+function _populatePokemonName(name) {
+  document.querySelector(".pokemon-header__pokemon-name").textContent = name;
+}
+
+function _populatePokemonTypes(types) {
+  document.querySelector(".pokemon-types").innerHTML = types.map(function (type) {
+    return type.type.name;
+  }).reduce(function (previous, current) {
+    if (previous === "") return (0, _format.capitalize)(current);
+    return "".concat(previous, " / ").concat((0, _format.capitalize)(current));
+  }, "");
+}
+
+function pokemon(pokemon) {
+  _populatePokemonAvatar(pokemon.sprites.front_default);
+
+  _populatePokemonName((0, _format.capitalize)(pokemon.name));
+
+  _populatePokemonId(pokemon.id);
+
+  _populatePokemonHeight(pokemon.height);
+
+  _populatePokemonTypes(pokemon.types);
+
+  _populatePokeMonMoves(pokemon.moves);
+}
+
+var _default = {
+  userInputButton: userInputButton,
+  userInputField: userInputField,
+  pokemon: pokemon
+};
+exports.default = _default;
+},{"./format":"src/js/utils/format.js"}],"src/js/utils/api.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function getRequest(location, callback) {
+  fetch(location).then(function (res) {
+    return res.json();
+  }).then(function (data) {
+    return callback(data);
+  });
+}
+
+var _default = {
+  getRequest: getRequest
+};
+exports.default = _default;
+},{}],"src/js/utils/events.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderNewPokemonOnUserInputButtonClick = renderNewPokemonOnUserInputButtonClick;
+
+var _renderElements = _interopRequireDefault(require("./render-elements"));
+
+var _api = _interopRequireDefault(require("./api"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function renderNewPokemonOnUserInputButtonClick() {
+  _renderElements.default.userInputButton.addEventListener("click", function () {
+    _api.default.getRequest("https://pokeapi.co/api/v2/pokemon/" + _renderElements.default.userInputField.value, function (pokemon) {
+      _renderElements.default.pokemon(pokemon);
+    });
+  });
+}
+},{"./render-elements":"src/js/utils/render-elements.js","./api":"src/js/utils/api.js"}],"src/js/app.js":[function(require,module,exports) {
+"use strict";
+
+var _events = require("./utils/events");
+
+(0, _events.renderNewPokemonOnUserInputButtonClick)();
+},{"./utils/events":"src/js/utils/events.js"}],"node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -165,7 +269,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53182" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58477" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
