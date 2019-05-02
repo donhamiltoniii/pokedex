@@ -8,48 +8,60 @@
     <link rel="stylesheet" href="/main.1603664a.css">
   <script src="/main.1603664a.js"></script></head>
   <body>
-    <header class="main-header">
-      <h1 class="main-header__title">Pokedex</h1>
-    </header>
-    <main>
-      <div class="container">
-
-        <input class="input" type="text">
-        <button class="getPokemon">Submit</button>
-        
-        <article class="pokemon-card">
-          <header class="pokemon-header">
-            <h2 class="pokemon-header__pokemon-name">Pokemon Name</h2>
-          </header>
-          <main>
-            <section class="main-info">
-              <img class="main-info__avatar" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="pokemon name image">
-              <table class="pokemon-data">
-                <tr class="pokemon-data__header">
-                  <th class="pokemon-data__item">ID #</th>
-                  <th class="pokemon-data__item">Height</th>
-                  <th class="pokemon-data__item">Types</th>
-                </tr>
-                <tr class="pokemon-data__body">
-                  <td class="pokemon-data__item pokemon-id">1</td>
-                  <td class="pokemon-data__item pokemon-height">7</td>
-                  <td class="pokemon-data__item pokemon-types">Poison/Grass</td>
-                </tr>
-              </table>
-            </section>
-            <ul class="pokemon-moves">
-              <h3 class="pokemon-moves__title">Moves</h3>
-              <li class="pokemon-moves__item">Razor-wind</li>
-              <li class="pokemon-moves__item">Swords-dance</li>
-              <li class="pokemon-moves__item">Cut</li>
-            </ul>
-          </main>
-        </article>
-      </div>
-    </main>
-    <footer>
-      <small>&copy; 2019</small>
-    </footer>
+    <div class="wrapper">
+      <header class="main-header">
+        <h1 class="main-header__title">Pokedex</h1>
+      </header>
+      <main>
+        <div class="container">
+          <section class="user-input">
+            <input class="user-input__field" type="text">
+            <button class="user-input__button">Submit</button>
+          </section>
+          <article class="pokemon-card">
+            <header class="pokemon-header">
+              <h2 class="pokemon-header__pokemon-name">Pokemon Name</h2>
+            </header>
+            <main>
+              <section class="main-info">
+                <img class="main-info__avatar" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="pokemon name image">
+                <table>
+                  <tbody class="pokemon-data">
+                    <tr class="pokemon-data__row">
+                      <th class="pokemon-data__item pokemon-data__item--dark">
+                        ID
+                      </th>
+                      <th class="pokemon-data__item pokemon-data__item--dark">
+                        Height
+                      </th>
+                      <th class="pokemon-data__item pokemon-data__item--dark">
+                        Types
+                      </th>
+                    </tr>
+                    <tr class="pokemon-data__row">
+                      <td class="pokemon-data__item pokemon-id">1</td>
+                      <td class="pokemon-data__item pokemon-height">7</td>
+                      <td class="pokemon-data__item pokemon-types">
+                        Poison/Grass
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <ul class="pokemon-moves">
+                <h3 class="pokemon-moves__title">Moves</h3>
+                <li class="pokemon-moves__item">Razor-wind</li>
+                <li class="pokemon-moves__item">Swords-dance</li>
+                <li class="pokemon-moves__item">Cut</li>
+              </ul>
+            </main>
+          </article>
+        </div>
+      </main>
+      <footer class="main-footer">
+        <small>&copy; 2019</small>
+      </footer>
+    </div>
     <script src="/app.77c12427.js"></script>
   </body>
 </html>
