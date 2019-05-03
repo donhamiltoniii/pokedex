@@ -19,5 +19,8 @@
   "homepage": "https://github.com/donhamiltoniii/pokedex#readme",
   "dependencies": {
     "parcel-bundler": "^1.12.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0"
   }
 }

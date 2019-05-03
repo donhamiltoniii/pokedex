@@ -235,13 +235,124 @@ function renderNewPokemonOnUserInputButtonClick() {
     });
   });
 }
-},{"./render-elements":"src/js/utils/render-elements.js","./api":"src/js/utils/api.js"}],"src/js/app.js":[function(require,module,exports) {
+},{"./render-elements":"src/js/utils/render-elements.js","./api":"src/js/utils/api.js"}],"src/js/web-components.js":[function(require,module,exports) {
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
+
+function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var getStyle = function getStyle() {
+  var fontSize = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "50";
+  return "\n  @import url('https://fonts.googleapis.com/css?family=Lato:400,800');\n  \n  .letter {\n    font-family: 'Lato', sans-serif;\n    font-weight: 800;\n    letter-spacing: -".concat(parseInt(fontSize) * 0.1, "px;\n    mix-blend-mode: darken;\n    position: relative;\n    -webkit-transition: top ease 0.1s;\n    -o-transition: top ease 0.1s;\n    transition: top ease 0.1s;\n    -webkit-transition-delay: 2s;\n    -o-transition-delay: 2s;\n    transition-delay: 2s;\n    opacity: 0.8;\n    font-size: ").concat(fontSize, "px;\n    text-transform: uppercase;\n  }\n  \n  .header span:nth-child(10n+1) {\n    color: #ef5350;\n  }\n  \n  .header span:nth-child(10n+2) {\n    color: #ab47bc;\n  }\n  \n  .header span:nth-child(10n+3) {\n    color: #651fff;\n  }\n  \n  .header span:nth-child(10n+4) {\n    color: #3949ab;\n  }\n  \n  .header span:nth-child(10n+5) {\n    color: #2196f3;\n  }\n  \n  .header span:nth-child(10n+6) {\n    color: #00bcd4;\n  }\n  \n  .header span:nth-child(10n+7) {\n    color: #4caf50;\n  }\n  \n  .header span:nth-child(10n+8) {\n    color: #ffc107;\n  }\n  \n  .header span:nth-child(10n+9) {\n    color: #ff80ab;\n  }\n  \n  .header span:nth-child(10n+10) {\n    color: #ff8f00;\n  }\n  \n  @media (max-width: 600px) {\n    .letter {\n        font-size: ").concat(parseInt(fontSize) * 0.5, "px;\n        letter-spacing: -").concat(parseInt(fontSize) * 0.05, "px;\n    }\n  }\n  @-webkit-keyframes hoveranimation {\n    0% {\n        top: 0px;\n    }\n    50% {\n        top: ").concat(parseInt(fontSize) * 0.5, "px;\n    }\n    100% {\n        top: 0px;\n    }\n  }\n  .hovered {\n    -webkit-animation: hoveranimation 3s;\n    animation: hoveranimation 3s;\n  }\n  ");
+};
+
+var RainbowText =
+/*#__PURE__*/
+function (_HTMLElement) {
+  _inherits(RainbowText, _HTMLElement);
+
+  function RainbowText() {
+    _classCallCheck(this, RainbowText);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(RainbowText).apply(this, arguments));
+  }
+
+  _createClass(RainbowText, [{
+    key: "addSpanEventListeners",
+    value: function addSpanEventListeners(span) {
+      span.addEventListener("mouseover", function () {
+        return span.classList.add("hovered");
+      });
+      span.addEventListener("animationend", function () {
+        return span.classList.remove("hovered");
+      });
+    }
+  }, {
+    key: "addSpans",
+    value: function addSpans(div) {
+      var _this = this;
+
+      [this.text].forEach(function (letter) {
+        var span = _this.createSpan(letter);
+
+        div.appendChild(span);
+      });
+    }
+  }, {
+    key: "addStyle",
+    value: function addStyle() {
+      var styleTag = document.createElement("style");
+      styleTag.textContent = getStyle(this.size);
+      this.shadowRoot.appendChild(styleTag);
+    }
+  }, {
+    key: "connectedCallback",
+    value: function connectedCallback() {
+      this.createShadowRoot();
+      this.text = this.getAttribute("text");
+      this.size = this.getAttribute("font-size");
+      this.render();
+    }
+  }, {
+    key: "createSpan",
+    value: function createSpan(letter) {
+      var span = document.createElement("span");
+      span.classList.add("letter");
+      span.textContent = letter;
+      this.addSpanEventListeners(span);
+      return span;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var div = document.createElement("div");
+      div.classList.add("header");
+      this.shadowRoot.appendChild(div);
+      this.addSpans(div);
+      this.addStyle();
+    }
+  }]);
+
+  return RainbowText;
+}(_wrapNativeSuper(HTMLElement));
+
+try {
+  customElements.define("rainbow-text", RainbowText);
+} catch (err) {
+  var h3 = document.createElement("h3");
+  h3.innerHTML = "This site uses webcomponents which don't work in all browsers! Try this site in a browser that supports them!";
+  document.body.appendChild(h3);
+}
+},{}],"src/js/app.js":[function(require,module,exports) {
 "use strict";
 
 var _events = require("./utils/events");
 
+require("./web-components");
+
 (0, _events.renderNewPokemonOnUserInputButtonClick)();
-},{"./utils/events":"src/js/utils/events.js"}],"node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./utils/events":"src/js/utils/events.js","./web-components":"src/js/web-components.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -269,7 +380,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58477" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49824" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -444,5 +555,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/js/app.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/js/app.js"], null)
 //# sourceMappingURL=/app.77c12427.js.map
