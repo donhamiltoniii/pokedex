@@ -119,25 +119,25 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"src/js/app.js":[function(require,module,exports) {
 console.log("Connected");
-var userInput = document.querySelector('.input');
-var button = document.querySelector('.getPokemon');
-button.addEventListener('click', function () {
+var userInput = document.querySelector(".input");
+var button = document.querySelector(".getPokemon");
+button.addEventListener("click", function () {
   var pokemonId = userInput.value;
-  fetch('https://pokeapi.co/api/v2/pokemon/' + pokemonId).then(function (res) {
+  fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonId).then(function (res) {
     return res.json();
   }).then(function (pokemon) {
     console.log(pokemon);
-    document.querySelector('.pokemon-types').textContent = '';
-    document.querySelector('.pokemon-header__pokemon-name').textContent = pokemon.name;
-    document.querySelector('.pokemon-id').textContent = pokemon.id;
-    document.querySelector('.pokemon-height').textContent = pokemon.height;
+    document.querySelector(".pokemon-types").textContent = "";
+    document.querySelector(".pokemon-header__pokemon-name").textContent = pokemon.name;
+    document.querySelector(".pokemon-id").textContent = pokemon.id;
+    document.querySelector(".pokemon-height").textContent = pokemon.height;
     pokemon.types.forEach(function (type) {
-      document.querySelector('.pokemon-types').textContent += type.type.name + '/';
+      document.querySelector(".pokemon-types").textContent += type.type.name + "/";
     }); // console.log(pokemon.types[0].type.name)
     // console.log(pokemon.types[1].type.name)
   });
 });
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -165,7 +165,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54368" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53182" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -340,5 +340,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/js/app.js"], null)
+},{}]},{},["node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/js/app.js"], null)
 //# sourceMappingURL=/app.77c12427.js.map
