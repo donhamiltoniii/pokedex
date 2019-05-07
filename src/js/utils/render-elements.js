@@ -16,7 +16,7 @@ function _populatePokemonId(id) {
 }
 
 function _populatePokeMonMoves(moves) {
-  document.querySelector(".pokemon-moves").innerHTML = moves
+  document.querySelector(".pokemon-moves__list").innerHTML = moves
     .slice(0, 10)
     .map(move => move.move.name)
     .reduce(
